@@ -1,6 +1,10 @@
 import React from 'react'
 import { graphql, compose } from 'react-apollo'
-import { getAuthorsQuery, addBookMutation } from '../queries/queries'
+import {
+  getAuthorsQuery,
+  addBookMutation,
+  getBooksQuery
+} from '../queries/queries'
 
 class AddBook extends React.Component {
   state = {
@@ -21,7 +25,8 @@ class AddBook extends React.Component {
         name,
         genre,
         authorId
-      }
+      },
+      refetchQueries: [{ query: getBooksQuery }] // refetches the booklist, effectively rerendering BookList
     })
   }
 
